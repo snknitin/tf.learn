@@ -30,3 +30,8 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * xlim and ylim functions set the limits for the range of axes in plots
     * Visualize a matrix using plt.imshow(mat,cmap='') and use a particular colormap 
     * plt.colorbar() will give you a legend for the imshow colormap 
+* Scikit-learn
+    * MinMaxScalar can be used to fit and transform the data for normalization to [0,1] range
+    * Train test split can be done easily
+    * This package supoorts everything except neural networks
+
