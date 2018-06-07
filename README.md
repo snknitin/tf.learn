@@ -21,3 +21,12 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * argmax and argmin will return the index of the array where the max and min elements reside
     * When using matrices, you can use a mask or filter value as mat > 5 which turns everything into Boolean
     * To get the actual values mat[mat>50] will give the values from this filter
+* Pandas
+    * Dataframe has a method as_matrix() which converts it into a matrix to be used in numpy
+    * They have inbuilt plot functionalities as well. df.plot(x,y,kind='scatter') will create a scatter plot between two columns x and y
+    
+* Matplotlib
+    * To see the visualizations we use **%matplotlib inline** in Jupyter
+    * xlim and ylim functions set the limits for the range of axes in plots
+    * Visualize a matrix using plt.imshow(mat,cmap='') and use a particular colormap 
+    * plt.colorbar() will give you a legend for the imshow colormap 
