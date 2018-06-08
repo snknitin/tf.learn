@@ -81,7 +81,7 @@ When you extend a class or inherit from a super class, to access the first class
             * trained_metrics = model.evaluate(input_fn,steps)  This gives a loss, average_loss and global step
             * model.predict(input_fn)
             
-         If you use a DNNClassifier, categorical columns should become an embedding_column or indicator_column  
+         * If you use a DNNClassifier, categorical columns should become an embedding_column or indicator_column  
             * model = tf.estimator.DNNClassifier(hidden_units=[10,10,10],feature_columns,n_classes)
             * embedded_group_column = tf.feature_column.embedding_column(assigned_group, dimension=4)
         
