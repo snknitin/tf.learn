@@ -35,3 +35,7 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * Train test split can be done easily
     * This package supoorts everything except neural networks
 
+
+## OOP Concept
+
+When you extend a class or inherit from a super class, to access the first class's init method we use super().__init__(args) to access the super class 
