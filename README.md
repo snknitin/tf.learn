@@ -117,6 +117,20 @@ When you extend a class or inherit from a super class, to access the first class
 * Accuracy
     * tf.equal(tf.argmax(y_pred,1),tf.argmax(y_true,1))
     * acc = tf.reduce_mean(tf.cast(matches,tf.float32))
+* CiFAR - To plot the image we need to reshape the image samples to (32,32,3)
+    * Data Shape = (10000,3,32,32)
+    * X = **X.reshape(10000, 3, 32, 32).transpose(0,2,3,1).astype("uint8")**
+
+
+## RNN and LSTM, Time Series
+
+Useful for sequential data like sentences, audio, car trajectories, time series data etc. Normal neuron aggregates weighted inputs into an acctivation function to get an output. Recurrent neuron sends the output back to the neuron. This can be unrolled. Cells that are a function of the input from previous time step is called a memory cell. Each Recurrent neuron has two sets of weights(Wx for input and Wy for output of that original input X)
+
+* Seq2Seq - Text generation
+* Seq2Vec - Sentiment scores
+* Vec2Seq -  captioning images
+
+
 
 
 
