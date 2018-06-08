@@ -63,13 +63,14 @@ When you extend a class or inherit from a super class, to access the first class
     * error = tf.reduce_sum() and tf.reduce_mean() to get cost functions
     * optimizer = tf.train.GradientDescentOptimizer(learning_rate) and train = optimizer.minimize(error)
  
- * Estimator Object
-    * tf.estimator is an API with several models which resembles scikit-learn ML models
-    * Feature columns -  tf.feature_column.numeric_column('x',shape=[1])
-    * Use train_test_split to get x_train
-    * Input function -  tf.estimator.inputs.numpy_input_fn({'x':x_train},y_train,batch_size,num_epochs,shuffle=True)
-    * estimator.train(input_fn,steps=1000) This gives global step-wise loss
-    * trained_metrics = estimator.evaluate(input_fn,steps)  This gives a loss, average_loss and global step
+     * Estimator Object
+        * tf.estimator is an API with several models which resembles scikit-learn ML models
+        * Feature columns -  tf.feature_column.numeric_column('x',shape=[1])
+        * Use train_test_split to get x_train, x_eval, y_train, y_eval
+        * Input function -  tf.estimator.inputs.numpy_input_fn({'x':x_train},y_train,batch_size,num_epochs,shuffle=True)
+        * estimator.train(input_fn,steps=1000) This gives global step-wise loss
+        * trained_metrics = estimator.evaluate(input_fn,steps)  This gives a loss, average_loss and global step
+        * estimator.predict(input_fn)
 
 
 
