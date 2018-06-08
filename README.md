@@ -95,7 +95,35 @@ When you extend a class or inherit from a super class, to access the first class
 * Xavier initialization - Draw weights from a Gaus sian or Uniform distribution with zero mean and specific variance equal to inverse of number of neurons feeding into that particuar neuron
 * Flattening an image removes some of the 2d information such as relationship with neighbouring pixels
 * cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_true,logits=y_pred))
-* 
+* Unlike a Densely connected NN where each unit is connected to every unit in the next layer,  CNN has each unit connected to a smller number of nearby units in the next layer. [Watch this](https://www.youtube.com/watch?v=JiN9p5vWHDY)
+* Nearby pixels are much more correlated to each other so each CNN layer looks at an increasingly larger part of the image and having units only connected to nearby units aids invariance. So we have regularization and also a limited search size for weights of the convolution
+
+* Initialize the weights as **tf.Variable(tf.truncated_normal(shape,stddev=0.1))**
+* Initialize bias as **tf.Variable(tf.constant(0.1,shape=shape))**
+
+* Convolution
+    * x = [batch,H,W,Channels]
+    * W = [filter_H, filter_W, Channels IN, Channels OUT]
+    * **tf.nn.conv2d(x,W,strides=[1,1,1,1],padding='SAME'/'VALID')**  Strides in each dimension
+* Pooling 
+    * **tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')**
+    * ksize is the size of the window for each dimension of the input tensor
+    * strides is the stride for the sliding window for each dimension of input tensor
+    * We do it on the H and W dimension
+* ReLU - tf.nn.relu(conv2d(input,W)+b)
+* Fully Connected Layer - tf.matmul(input_layer,W)+b
+* tf.reshape(x,[-1,28,28,1])
+* tf.nn.dropout(final_layer,keep_prob=0.6)
+* Accuracy
+    * tf.equal(tf.argmax(y_pred,1),tf.argmax(y_true,1))
+    * acc = tf.reduce_mean(tf.cast(matches,tf.float32))
+
+
+
+
+
+
+
 
 
 
