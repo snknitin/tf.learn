@@ -84,8 +84,18 @@ When you extend a class or inherit from a super class, to access the first class
          * If you use a DNNClassifier, categorical columns should become an embedding_column or indicator_column  
             * model = tf.estimator.DNNClassifier(hidden_units=[10,10,10],feature_columns,n_classes)
             * embedded_group_column = tf.feature_column.embedding_column(assigned_group, dimension=4)
-        
+* Save and Restore
+    * saver = tf.train.Saver()
+    * Towards the end use  saver.save(sess,'models/my_first_model.ckpt')
+    * saver.restore(sess,'models/my_first_model.ckpt')
 
+
+## Convolutional Neural Networks
+
+* Xavier initialization - Draw weights from a Gaus sian or Uniform distribution with zero mean and specific variance equal to inverse of number of neurons feeding into that particuar neuron
+* Flattening an image removes some of the 2d information such as relationship with neighbouring pixels
+* cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_true,logits=y_pred))
+* 
 
 
 
