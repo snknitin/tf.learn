@@ -32,6 +32,8 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * xlim and ylim functions set the limits for the range of axes in plots
     * Visualize a matrix using **plt.imshow(mat,cmap='')** and use a particular colormap 
     * **plt.colorbar()** will give you a legend for the imshow colormap 
+    * Use label parameter if you have multiple plots in the same figure. That way you can call plt.legend()
+    * plt.tight_layout() so that hte legend box doesn't block anything
 * Scikit-learn
     * **MinMaxScalar** can be used to fit and transform the data for normalization to [0,1] range
     * Train test split can be done easily
@@ -52,10 +54,14 @@ When you extend a class or inherit from a super class, to access the first class
     * a.get_shape() will give the TensroShape with dimensions
     * **tf.matmul(a,b** Matrix multiplication
     * **tf.multiply(a,b)** is element-wise multiplication
+    * [ONLY FOR GPU USAGE](https://stackoverflow.com/questions/34199233/how-to-prevent-tensorflow-from-allocating-the-totality-of-a-gpu-memory)
+        * gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.75)
+        * with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
 * Graphs
     * when you start TF, a default graph is created which can be accessed as a GraphObject using tf.get_default_graph()
     * g=tf.Graph() to create another graph
     * **with g.as_default():** This makes it the default
+    * tf.reset_default_graph() to refresh 
  * Variables and Placeholders
     * These are the two types of Tensor objects
     * Placeholders are initially empty but they need to be declared with an expected data type(like tf.float32) and shape of the data
@@ -138,6 +144,28 @@ To avoid vanishing gradients we can do batch normalization, gradient clipping, o
 Alternatively we can shorten the timesteps used for prediction but that gets worse at predicting longer trends. RNN's have an inherent memory loss anyway due to information being lost in each timestep. Use GRU or LSTM
 
 ![alt text](https://github.com/snknitin/tf.learn/blob/master/static/LSTM.PNG)
+
+* Forget Gate - 
+    * Sigmoid , 1 means keep it and 0 means forget
+    * Maybe when you want to speak about the new subject you want to forget the old subject attributes like gender pronouns
+    * Input xt and Previous output ht-1
+* Input Gate - 
+    * What new information will you store in the cell state
+    * First part is a sigmoid(input) and second part is tanh(candidate cell state C~t)
+* Current Cell state -
+    * Ct = Forget previous cell state + input state with candidate cell state
+* Output State
+    * Use sigmoid for previous output ht-1 and current input xt to get output gate ot
+    * Tanh of output with cell state Ct is the final output ht
+
+
+Peephole LSTM -  here we pass Ct-1 to each of the three gates   
+Gated Recurrent Unit - Combines forget and input gate into an Update Gate, merges cell state and hidden state too. This resulting model is simpler than LSTM
+![alt text](https://github.com/snknitin/tf.learn/blob/master/static/GRU.png)
+
+**cell = tf.contrib.rnn.OutputProjectionWrapper(tf.contrib.rnn.BasicRNNCell(num_units,activation = tf.nn.relu), output_size)**
+**output, states = tf.nn.dynamic_rnn(cell,X, dtype=tf.float32)**
+
 
 
 
