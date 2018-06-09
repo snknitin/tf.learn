@@ -98,6 +98,9 @@ When you extend a class or inherit from a super class, to access the first class
 * Unlike a Densely connected NN where each unit is connected to every unit in the next layer,  CNN has each unit connected to a smller number of nearby units in the next layer. [Watch this](https://www.youtube.com/watch?v=JiN9p5vWHDY)
 * Nearby pixels are much more correlated to each other so each CNN layer looks at an increasingly larger part of the image and having units only connected to nearby units aids invariance. So we have regularization and also a limited search size for weights of the convolution
 
+
+![alt text](https://github.com/snknitin/tf.learn/blob/master/static/CNN.png)
+
 * Initialize the weights as **tf.Variable(tf.truncated_normal(shape,stddev=0.1))**
 * Initialize bias as **tf.Variable(tf.constant(0.1,shape=shape))**
 
@@ -131,9 +134,10 @@ Useful for sequential data like sentences, audio, car trajectories, time series 
 * Vec2Seq -  captioning images
 
 
+To avoid vanishing gradients we can do batch normalization, gradient clipping, or just change the activation function to leaky relu.
+Alternatively we can shorten the timesteps used for prediction but that gets worse at predicting longer trends. RNN's have an inherent memory loss anyway due to information being lost in each timestep. Use GRU or LSTM
 
-
-
+![alt text](https://github.com/snknitin/tf.learn/blob/master/static/LSTM.png)
 
 
 
