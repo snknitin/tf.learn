@@ -163,8 +163,8 @@ Peephole LSTM -  here we pass Ct-1 to each of the three gates
 Gated Recurrent Unit - Combines forget and input gate into an Update Gate, merges cell state and hidden state too. This resulting model is simpler than LSTM
 ![alt text](https://github.com/snknitin/tf.learn/blob/master/static/GRU.png)
 
-**cell = tf.contrib.rnn.OutputProjectionWrapper(tf.contrib.rnn.BasicRNNCell(num_units,activation = tf.nn.relu), output_size)**
-**output, states = tf.nn.dynamic_rnn(cell,X, dtype=tf.float32)**
+**cell = tf.contrib.rnn.OutputProjectionWrapper(tf.contrib.rnn.BasicRNNCell(num_units,activation = tf.nn.relu), output_size)**  
+**output, states = tf.nn.dynamic_rnn(cell,X, dtype=tf.float32)**  
 
 
 
