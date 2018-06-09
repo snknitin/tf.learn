@@ -174,22 +174,31 @@ the reason we do this is because the text data is usually sparse. Use gensim ins
 
 * Count base -  compute the statistics of how oftern some words co occur with neighbors in a large text corpus and mapt these to a small dense vector
 * Predictive based  - directly try to predict the word from its nbrs in terms of learned small dense embedding vectors
+    Pros : 
+    * Similar words end up being close together
+    * The model may produce axes that represent concepts such as gender, vers, singular vs plural etc
     * CBOW - The dog chews the **bone**
         * Takes source context words and tries to find best prediction of target word
         * Best for smaller datasets since bag of words smoothes over a lot of the distributional info by treating an entire context as one observation
         * It uses a binary classification objective like **logistic regression** where we compare the target word with rest of the noise words
-        ![alt text](https://github.com/snknitin/tf.learn/blob/master/static/word2veccbow.png)
+        ![alt text](https://github.com/snknitin/tf.learn/blob/master/static/word2veccbow.PNG)
         * **Training is Noise-Contrastive**. We draw k words from noise distribution to make it computationally efficient
         * Assign high probability to correct words and low for noise words
         * Visualize these by reducing dimensions from 150 to 2 by  using **t-Distributed Stochastic Neighbor Embedding**
     * Skipgram - 
         * Predicts source context words from the target word
         * Best for large datasets
+     
+* Coding :
+    * init_embeds = tf.random.uniform([vocabulary_size,Embedding_size],-1.0,1.0)
+    * embeddings = tf.Variable(init_embeds)
+    * embed = tf.nn.embedding_lookup(embeddings,train_inputs)
+    * nce_weights - tf.Variable(tf.truncated_normal([vocab_size,embedding_size],stddev=1.0/np.sqrt(embedding_size)))
+    * nce_biases = tf.Variable(tf.zeros([vocab_size]))
+    * loss = tf.reduce_mean(tf.nn.nce_loss(nce_weights,nce_biases,train_labels,embed,num_sampled,vocab_size))
+    
 
-Pros : 
 
-* Similar words end up being close together
-* the model may produce axes that represent concepts such as gender, vers, singular vs plural etc
 
 
 
