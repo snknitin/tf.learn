@@ -257,6 +257,7 @@ Layers module in tf.layers , which got past the tf.contrib.layers and became a f
     * hidden2 = fully_connected(hidden1,num_hidden2,activation_fn=tf.nn.relu)
     * output = fully_connected(hidden2,num_outputs)
     * loss =  tf.losses.softmax_cross_entropy(onehot_labels=y_true,logits=output)
+* To perform **PCA using Autoencoders**, the activation is fully_connected is set to None
     
 # Tensorboard
 
