@@ -168,6 +168,28 @@ Use output projection wrapper to get the correct dimension of output:
 **cell = tf.contrib.rnn.OutputProjectionWrapper(tf.contrib.rnn.BasicRNNCell(num_units,activation = tf.nn.relu), output_size)**  
 **output, states = tf.nn.dynamic_rnn(cell,X, dtype=tf.float32)**  
 
+## Word2Vec using Gensim
+    
+the reason we do this is because the text data is usually sparse. Use gensim instead of tf. Words in a sentence can be thought of as a sequence. In NLP techniques words are usually replaced with numbers indicating some frequency relationship to their documents but in doing so we lose important information about the relationship between the words themselves.  
+
+* Count base -  compute the statistics of how oftern some words co occur with neighbors in a large text corpus and mapt these to a small dense vector
+* Predictive based  - directly try to predict the word from its nbrs in terms of learned small dense embedding vectors
+    * CBOW - The dog chews the **bone**
+        * Takes source context words and tries to find best prediction of target word
+        * Best for smaller datasets since bag of words smoothes over a lot of the distributional info by treating an entire context as one observation
+        * It uses a binary classification objective like **logistic regression** where we compare the target word with rest of the noise words
+        ![alt text](https://github.com/snknitin/tf.learn/blob/master/static/word2veccbow.png)
+        * **Training is Noise-Contrastive**. We draw k words from noise distribution to make it computationally efficient
+        * Assign high probability to correct words and low for noise words
+        * Visualize these by reducing dimensions from 150 to 2 by  using **t-Distributed Stochastic Neighbor Embedding**
+    * Skipgram - 
+        * Predicts source context words from the target word
+        * Best for large datasets
+
+Pros : 
+
+* Similar words end up being close together
+* the model may produce axes that represent concepts such as gender, vers, singular vs plural etc
 
 
 
