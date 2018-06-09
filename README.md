@@ -137,7 +137,7 @@ Useful for sequential data like sentences, audio, car trajectories, time series 
 To avoid vanishing gradients we can do batch normalization, gradient clipping, or just change the activation function to leaky relu.
 Alternatively we can shorten the timesteps used for prediction but that gets worse at predicting longer trends. RNN's have an inherent memory loss anyway due to information being lost in each timestep. Use GRU or LSTM
 
-![alt text](https://github.com/snknitin/tf.learn/blob/master/static/LSTM.png)
+![alt text](https://github.com/snknitin/tf.learn/blob/master/static/LSTM.PNG)
 
 
 
