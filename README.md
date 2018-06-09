@@ -26,6 +26,7 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * **df.sample(n=250)** to sample random rows from the dataframe
     * They have inbuilt plot functionalities as well. df.plot(x,y,kind='scatter') will create a scatter plot between two columns x and y
     * **df[cols\_to\_norm].apply(lambda x:(x - x.min()) / (x.max() - x.min()))** to normalize specific columns
+    * **pd.get_dummies(y_train).as_matrix()** will create one hot encodings automatically as a numpy matrix.
     
 * Matplotlib
     * To see the visualizations we use **%matplotlib inline** in Jupyter
@@ -222,7 +223,7 @@ the reason we do this is because the text data is usually sparse. Use gensim ins
 Some sort of higher level API that allows you to simplify the code yet still call the same sort of tensorflow commands. Eg: Skipping placeholders,feed dictionaries etc.,  Perfect when all you want to do is stack layers on top of each other
 
 
-* Keras : It became a part of tensorflow adn can be called from it
+* **Keras API** : It became a part of tensorflow and can be called from it
     * from tensorflow.contrib.keras import models
     * **dnn_model = models.Sequential()**
     * from tensorflow.contrib.keras import **layers**
@@ -238,6 +239,39 @@ Some sort of higher level API that allows you to simplify the code yet still cal
         * dnn_model.fit(scaled_x_train,y_train, epochs=50)
     * Making predictions
         * dnn_model.predict_classes(scaled_x_test)
+     
+* **Layers API**
+
+Layers module in tf.layers , which got past the tf.contrib.layers and became a feature of tensorflow.
+
+* To get slightly more options for fully connected layers we use contrib
+    * from tf.contrib.layers import fully_connected
+    * hidden1 = fully_connected(X,num_hidden1,activation_fn=tf.nn.relu)
+    * hidden2 = fully_connected(hidden1,num_hidden2,activation_fn=tf.nn.relu)
+    * output = fully_connected(hidden2,num_outputs)
+    * loss =  tf.losses.softmax_cross_entropy(onehot_labels=y_true,logits=output)
+    
+# Tensorboard
+
+Create a graph
+
+    with tf.Session() as sess:  
+        writer = tf.summary.FileWriter("./output",sess)
+        print(sess.run())
+        writer.close()
+
+To view the graph   
+**tensorboard --logdir="./output"**
+
+* Every tensorflow operation has a parameter called name. Spaces are not allowed in it. we can also add scopes
+* **with tf.name_scope("Operation_A"):** and every variable named under this is encompassed. We can also have nested scopes
+* To merge all your summaries into one node
+        
+        summaries = tf.summary.merge_all()
+        writer.add_summary(sess.run(...),global_step=step)
+
+For more info [click here](https://www.tensorflow.org/versions/r1.1/get_started/summaries_and_tensorboard)
+
 
 
 
