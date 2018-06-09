@@ -35,9 +35,25 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * Use label parameter if you have multiple plots in the same figure. That way you can call plt.legend()
     * plt.tight_layout() so that hte legend box doesn't block anything
 * Scikit-learn
-    * **MinMaxScalar** can be used to fit and transform the data for normalization to [0,1] range
+    * This package supports everything except neural networks
+    * Load Datasets
+        * from sklearn.datasets import <dataset_name>
+        * load_data()
+    * **MinMaxScaler** can be used to fit and transform the data for normalization to [0,1] range
+        * from sklearn.preprocessing import MinMaxScaler
+        * scaler = MinMaxScaler()
+        * scaled_x_train = scaler.fit_transform(X_train)
+
     * Train test split can be done easily
-    * This package supoorts everything except neural networks
+        * from sklearn.model_selection import **train_test_split**
+        * X_train, X_test, y_train, y_test = train_test_split(feat_data,
+                                                    labels,
+                                                    test_size=0.3,
+                                                   random_state=101)
+    
+    * Classification evaluation metrics
+        * from sklearn.metrics import confusion_matrix,classification_report
+        * print(classification_report(predictions,y_test))
 
 
 ## OOP Concept
@@ -200,8 +216,28 @@ the reason we do this is because the text data is usually sparse. Use gensim ins
 
 
 
+# TensorFlow Abstractions
 
 
+Some sort of higher level API that allows you to simplify the code yet still call the same sort of tensorflow commands. Eg: Skipping placeholders,feed dictionaries etc.,  Perfect when all you want to do is stack layers on top of each other
+
+
+* Keras : It became a part of tensorflow adn can be called from it
+    * from tensorflow.contrib.keras import models
+    * **dnn_model = models.Sequential()**
+    * from tensorflow.contrib.keras import **layers**
+    * Adding Layers and Stacking
+        * **dnn_model.add(layers.Dense(units=num_features,input_dim=,activation='relu'))** , repeat this line for stacking but remove the input_dim parameter for those
+    * Last layer -  dnn_model.add(layers.Dense(units=num_output_classes,**activation='softmax'**))
+    * To see what activations are available
+        * from tensorflow.contrib.keras import **losses,optimizers,metrics,activations**
+    * Final step is to compile
+        * dnn_model.compile(optimizer='adam',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+        * If data is not one-hot coming in we use sparse else skip the sparse part
+    * Now fit the model
+        * dnn_model.fit(scaled_x_train,y_train, epochs=50)
+    * Making predictions
+        * dnn_model.predict_classes(scaled_x_test)
 
 
 
