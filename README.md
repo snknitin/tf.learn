@@ -33,8 +33,15 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * xlim and ylim functions set the limits for the range of axes in plots
     * Visualize a matrix using **plt.imshow(mat,cmap='')** and use a particular colormap 
     * **plt.colorbar()** will give you a legend for the imshow colormap 
-    * Use label parameter if you have multiple plots in the same figure. That way you can call plt.legend()
-    * plt.tight_layout() so that hte legend box doesn't block anything
+    * Use label parameter if you have multiple plots in the same figure. That way you can call **plt.legend()**
+    * **plt.tight_layout()** so that hte legend box doesn't block anything
+    * To plot in 3d :
+   
+            from mpl_toolkits.mplot3d import Axes3D
+            fig = plt.figure()
+            ax = fig.add_subplot(111, projection ='3D')
+            ax.scatter(data_x,data_y,data_z,c=data[1])
+    
 * Scikit-learn
     * This package supports everything except neural networks
     * Load Datasets
