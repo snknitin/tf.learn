@@ -145,6 +145,7 @@ Alternatively we can shorten the timesteps used for prediction but that gets wor
 
 ![alt text](https://github.com/snknitin/tf.learn/blob/master/static/LSTM.PNG)
 
+![alt text](https://github.com/snknitin/tf.learn/blob/master/static/LSTM2.png)
 * Forget Gate - 
     * Sigmoid , 1 means keep it and 0 means forget
     * Maybe when you want to speak about the new subject you want to forget the old subject attributes like gender pronouns
