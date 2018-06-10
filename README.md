@@ -21,6 +21,13 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * argmax and argmin will return the index of the array where the max and min elements reside
     * When using matrices, you can use a mask or filter value as mat > 5 which turns everything into Boolean
     * To get the actual values mat[mat>50] will give the values from this filter
+    * Fourier transform ( converts signal from time domain to frequency domain ie., show the frequency components)
+        
+            x = np.linspace(0,100,1000)
+            y= np.sin(x) + np.sin(3x) + np.sin(5x)
+            Y= np.fft.fft(y)
+            plt.plot(np.abs(Y))
+            
 * Pandas
     * Dataframe has a method as_matrix() which converts it into a matrix to be used in numpy
     * **df.sample(n=250)** to sample random rows from the dataframe
@@ -62,7 +69,54 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * Classification evaluation metrics
         * from sklearn.metrics import confusion_matrix,classification_report
         * print(classification_report(predictions,y_test))
+   
+ * **Scipy**
+ 
+    * Always use scipy for probability distributions sincce it is faster
+ 
+             from scipy.stats import norm
+             norm.pdf(0)
+             norm.pdf(0,loc=5,scale=10) - loc is mean and scale is stddev  
+             norm.pdf(np.random.rand(10)) - calculate pdf of all values in array  
 
+             norm.logpdf() - log pdf  
+             norm.cdf() - cumulative dist func  
+             norm.logcdf() 
+ 
+    * Sample from a Gaussian : Spherical(2d with mean 0 and variace 1, each dimension is uncorrelated and independent of each other due to unit variance)
+
+            r= np.random.rand(10000,2)
+            r = 5(r)+10
+
+    * Sample from a general multivariate normal distribution where dimensions are not necessarily independent(full covariance matrix)
+
+            cov = np.array([[1,0.8],[0.8,1]])
+            from scipy.stats import multivariate_normal as mvn
+            mu =  np.array([0,2])
+            r = mvn.rvs(mean=mu,cov=cov,size=1000)
+            plt.scatter(r[:,0],r[:,1])
+            plt.axis('equal')
+            
+     * Loading matlab files or audio files
+        * Loading .mat files    
+        
+                scipy.io.loadmat
+                
+         * Audio files contain signal amplitude at every point where sound is samples and the typical sampling rate is 44.1kHz(44100 samples(integers) for every second of sound)  
+            
+                scipy.io.wavfile.read
+                scipy.io.wavfile.write
+        * Convolution for signal processing
+            
+                 scipy.signal.convolve
+                 scipy.signal.convolv2d   for images
+                 
+               
+
+
+
+
+ 
 
 ## OOP Concept
 
