@@ -1,5 +1,5 @@
 # tf.learn
-Learning to use TensorFlow for Deep Learning
+My notes for learning to use TensorFlow for Deep Learning
 
 
 
@@ -21,6 +21,21 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * argmax and argmin will return the index of the array where the max and min elements reside
     * When using matrices, you can use a mask or filter value as mat > 5 which turns everything into Boolean
     * To get the actual values mat[mat>50] will give the values from this filter
+    * Dot product - a.dot(b)
+    * Matrix operations
+        * np.linalg.inv(A)
+        * np.linalg.norm(a)
+        * np.linalg.det(A)
+        * np.diag(A) - if you pass a 2d array you get a 1d array of diagonal elements but if you pass a 1d array, you get a diagonal matrix with that array elements
+        * np.outer(a,b)
+        * np.inner(a,b)
+        * np.trace(A)  - sum of diagonal elements
+        * cov = np.cov(X.T) - covariance. Calculate it so that we have (num_col,num_col) shape , so transpose
+        * np.linalg.eigh(cov) and np.linalg.eig(cov)
+     * Solving linear system of equations
+        * Ax=B cna be solves by multiplying with A.inv
+        * x= np.linalg.solve(A,B)
+        * This is more efficient that calculating inverse and multiplying
     * Fourier transform ( converts signal from time domain to frequency domain ie., show the frequency components)
         
             x = np.linspace(0,100,1000)
@@ -34,6 +49,7 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
     * They have inbuilt plot functionalities as well. df.plot(x,y,kind='scatter') will create a scatter plot between two columns x and y
     * **df[cols\_to\_norm].apply(lambda x:(x - x.min()) / (x.max() - x.min()))** to normalize specific columns
     * **pd.get_dummies(y_train).as_matrix()** will create one hot encodings automatically as a numpy matrix.
+    * For Joins use pd.merge(df1,df2,on='<insert_column_name>')
     
 * Matplotlib
     * To see the visualizations we use **%matplotlib inline** in Jupyter
