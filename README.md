@@ -127,12 +127,6 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
                  scipy.signal.convolve
                  scipy.signal.convolv2d   for images
                  
-               
-
-
-
-
- 
 
 ## OOP Concept
 
@@ -161,6 +155,10 @@ When you extend a class or inherit from a super class, to access the first class
     * Placeholders are initially empty but they need to be declared with an expected data type(like tf.float32) and shape of the data
     * You get a error if you try to run a variable without initializing. Use **init = tf.global_variables_initialzer()** and sess.run(init)
     * **initializer = tf.variance_scaling_initializer()** allows the intializer to adapt to the size of the weight tensors. This is useful for stacked autoencoders. Now initialize weights for each layer with the initializer
+    * Variable scope - Allows modular sections or subsets of parameters to reuse that module
+            
+            with tf.varaible_scope('gen',reuse=True):
+                
  * Regression and Classificaton tasks
     * **error = tf.reduce_sum()** and tf.reduce_mean() to get cost functions
     * **optimizer = tf.train.GradientDescentOptimizer(learning_rate)** and **train = optimizer.minimize(error)**
@@ -189,6 +187,7 @@ When you extend a class or inherit from a super class, to access the first class
     * saver = tf.train.Saver()
     * Towards the end use  saver.save(sess,'models/my_first_model.ckpt')
     * saver.restore(sess,'models/my_first_model.ckpt')
+    * tf.train.Saver(var_list)
 
 
 ## Convolutional Neural Networks
