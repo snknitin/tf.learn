@@ -142,10 +142,21 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
             p.sort_stats('cumulative').print_stats(30)
 
     * Load the Cython extension in a Jupyter notebook with **%load_ext Cython**.
-    * Now you can write Cython code like Python code by using the magic command **%%cython**
+    * Now you can write Cython code like Python code by using the magic command **%%cython -+**
     * Cython code is written in .pyx files. These files are compiled to C or C++ files by the Cython compiler and then to byte-code level with the system’s C compiler. You can load a .pyx file directly in Python by using " import pyximport "
     * [Install Spacy](https://github.com/explosion/spaCy/blob/master/setup.py)
     * [Cython for NumPy](http://cython.readthedocs.io/en/latest/src/userguide/numpy_tutorial.html)
+    * Functions 
+        *  **def** - Internally they can use both Python and C/C++ objects and can call both Cython and Python functions
+        * **cdef** - They can take as input, use internally and output both Python and C/C++ objects. These functions are not accessible from the Python-space (i.e. the Python interpreter and other pure Python modules that would import your Cython module) but they can be imported by other Cython modules.
+        * **cpdef** - provided with a Python wrapper so they can be called from the Python-space
+    * Spacy
+                
+            from cymem.cymem cimport Pool
+            from spacy.tokens.doc cimport Doc
+            from spacy.typedefs cimport hash_t
+            from spacy.structs cimport TokenC
+     
 
 ## OOP Concept
 
