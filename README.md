@@ -141,7 +141,10 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
             p = pstats.Stats('restats')
             p.sort_stats('cumulative').print_stats(30)
 
-    * 
+    * Load the Cython extension in a Jupyter notebook with **%load_ext Cython**.
+    * Now you can write Cython code like Python code by using the magic command **%%cython**
+    * Cython code is written in .pyx files. These files are compiled to C or C++ files by the Cython compiler and then to byte-code level with the system’s C compiler. You can load a .pyx file directly in Python by using " import pyximport "
+    * [Install Spacy](https://github.com/explosion/spaCy/blob/master/setup.py)
 
 ## OOP Concept
 
