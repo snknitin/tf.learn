@@ -128,10 +128,20 @@ Get the yml file from [here](https://www.dropbox.com/s/k4i3gmo0bvss7g7/linux_tfd
                  scipy.signal.convolv2d   for images
                  
 * SpaCy and Cython
-It mixes C/C++ with Python, in a easy to learn interface.The main reason is that Cython gives you a compiled code and the discussion is related to compilers and interpreters.In Cython the code needs to be “executable”. A compiler (e.g. gcc, cpp, icc) reads and analyses all the source code and produce a lower machine language of the code you have written as an executable file.
 
+    * It mixes C/C++ with Python, in a easy to learn interface.
+    * The main reason is that Cython gives you a compiled code and the discussion is related to compilers and interpreters.In Cython the code needs to be “executable”. A compiler (e.g. gcc, cpp, icc) reads and analyses all the source code and produce a lower machine language of the code you have written as an executable file.
 
+    * **Profiling** - You should thus start by profiling your Python code and find where the slow parts are located.
+    
+            import cProfile
+            import pstats
+            import my_slow_module
+            cProfile.run('my_slow_module.run()', 'restats')
+            p = pstats.Stats('restats')
+            p.sort_stats('cumulative').print_stats(30)
 
+    * 
 
 ## OOP Concept
 
